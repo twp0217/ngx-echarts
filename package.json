@@ -1,0 +1,36 @@
+{
+  "name": "echarts-ng2",
+  "version": "1.1.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "prepublish": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twp0217/echarts-ng2.git"
+  },
+  "keywords": [
+    "angular2",
+    "echarts",
+    "ng2",
+    "echarts-ng2"
+  ],
+  "author": "tu.wenpan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twp0217/echarts-ng2/issues"
+  },
+  "homepage": "https://github.com/twp0217/echarts-ng2#readme",
+  "dependencies": {
+    "@types/echarts": "0.0.5",
+    "echarts": "^3.4.0"
+  },
+  "devDependencies": {
+    "@angular/common": "^2.4.10",
+    "@angular/core": "^2.4.10",
+    "rxjs": "^5.2.0",
+    "typescript": "^2.2.1",
+    "zone.js": "^0.7.6"
+  }
+}
