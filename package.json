@@ -1,8 +1,9 @@
 {
   "name": "echarts-ng2",
-  "version": "1.1.0",
-  "description": "",
-  "main": "index.js",
+  "version": "1.2.0",
+  "description": "Angular2 ECharts component",
+  "main": "src/index.js",
+  "typings": "src/index.d.ts",
   "scripts": {
     "prepublish": "tsc"
   },
@@ -22,7 +23,7 @@
     "url": "https://github.com/twp0217/echarts-ng2/issues"
   },
   "homepage": "https://github.com/twp0217/echarts-ng2#readme",
-  "dependencies": {
+  "peerDependencies": {
     "@types/echarts": "0.0.5",
     "echarts": "^3.4.0"
   },
