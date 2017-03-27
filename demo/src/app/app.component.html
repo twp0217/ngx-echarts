@@ -1,18 +1,12 @@
-<nav class="navbar navbar-inverse navbar-fixed-top">
+<nav class="navbar navbar-default navbar-fixed-top">
     <div class="container">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false"
-                aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-            <a class="navbar-brand" href="#">echarts-ng2</a>
+            <a class="navbar-brand" routerLink=''>echarts-ng2</a>
         </div>
-        <div id="navbar" class="navbar-collapse collapse">
+        <div class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="../navbar/">Documentation</a></li>
+                <li><a routerLink=''>Domo</a></li>
+                <li><a routerLink="./documentation">Documentation</a></li>
             </ul>
         </div>
     </div>
@@ -22,40 +16,10 @@
     <div class="container">
         <h1>echarts-ng2</h1>
         <p>Angular2 ECharts组件(Angular2 ECharts component)</p>
-        <p><a class="btn btn-primary btn-lg" href="https://github.com/twp0217/echarts-ng2">View on GitHub</a></p>
+        <p><a class="btn btn-primary btn-lg" href="https://github.com/twp0217/echarts-ng2" target="_blank">View on GitHub</a></p>
     </div>
 </div>
 
 <div class="container">
-    <div>
-        <div class="row"></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">基本</div>
-            <div class="panel-body">
-                <div class="text-center">
-                    <basic-charts></basic-charts>
-                </div>
-
-                <tabset>
-                    <tab heading="html">
-                        <pre class="prettyprint linenums lang-html">{{html}}</pre>
-                    </tab>
-                    <tab heading="TypeScript">
-                        <pre class="prettyprint linenums lang-js">{{ts}}</pre>
-                    </tab>
-                </tabset>
-            </div>
-        </div>
-    </div>
-
-    <div>
-        <div class="row"></div>
-        <div class="panel panel-default">
-            <div class="panel-heading">自定义样式</div>
-            <div class="panel-body text-center">
-                <echarts-ng2 [option]="option2" [style]="{'width': '800px', 'height': '600px'}"></echarts-ng2>
-            </div>
-        </div>
-        <div class="row"></div>
-    </div>
+    <router-outlet></router-outlet>
 </div>

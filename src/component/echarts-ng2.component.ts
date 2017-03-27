@@ -8,28 +8,21 @@ import { ECharts as IECharts } from '../';
 
 @Component({
   selector: 'echarts-ng2',
-  template: '<div #host [ngStyle]="style" class="echartsInstance"></div>',
-  styles: [
-    ` 
-      .echartsInstance{
-          display: inline-block;
-          width: 600px;
-          height: 400px;
-      }
-    `
-  ]
+  template: '<div #host [ngStyle]="style" class="inline-block"></div>',
+  styles: ['.inline-block { display: inline-block; }']
 })
 export class EchartsNg2Component implements AfterViewInit, OnDestroy, IECharts {
   private chart: ECharts;
   private _option: EChartOption;
+  private opts = { 'width': 600, 'height': 400 }
 
   @Input() theme: Object|string = "default";
   @Input()
   set option(option: EChartOption) {
     this._option = option;
     if (this.chart) {
-      this.chart.setOption(this.option);
-      this.onOptionChange.emit();
+      this.chart.setOption(option);
+      this.onOptionChange.emit(option);
     }
   }
   get option(): EChartOption { return this._option; }
@@ -57,36 +50,66 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, IECharts {
   init = () => {
     if (!this.chart) {
       this.onBeforeInit.emit();
-      this.chart = echarts.init(this.host.nativeElement, this.theme);
+      this.chart = echarts.init(this.host.nativeElement, this.theme, this.style ? {}:this.opts);
       this.onAfterInit.emit();
     }
     this.option && this.chart.setOption(this.option);
   }
-  dispose = (): void => { this.chart.dispose(); this.chart = null; }
 
-  setOption = (option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean): void => { this.chart.setOption(option, notMerge, lazyUpdate); }
+  dispose = (): void => {
+    this.chart.dispose();
+    this.chart = null;
+  }
 
-  getWidth = (): number => { return this.chart.getWidth(); }
+  setOption = (option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean): void => {
+    this.chart.setOption(option, notMerge, lazyUpdate);
+  }
 
-  getHeight = (): number => { return this.chart.getHeight(); }
+  getWidth = (): number => {
+    return this.chart.getWidth();
+  }
 
-  getDom = (): HTMLCanvasElement | HTMLDivElement => { return this.getDom(); }
+  getHeight = (): number => {
+    return this.chart.getHeight();
+  }
 
-  getOption = (): Object => { return this.chart.getOption(); }
+  getDom = (): HTMLCanvasElement | HTMLDivElement => {
+    return this.getDom();
+  }
 
-  resize = (): void => { this.chart.resize(); }
+  getOption = (): Object => {
+    return this.chart.getOption();
+  }
 
-  dispatchAction = (payload: Object): void => { this.chart.dispatchAction(payload); }
+  resize = (): void => {
+    this.chart.resize();
+  }
 
-  on = (eventName: string, handler: Function, context?: Object): void => { this.chart.on(eventName, handler, context); }
+  dispatchAction = (payload: Object): void => {
+    this.chart.dispatchAction(payload);
+  }
 
-  off = (eventName: string, handler?: Function): void => { this.chart.off(eventName, handler); }
+  on = (eventName: string, handler: Function, context?: Object): void => {
+    this.chart.on(eventName, handler, context);
+  }
 
-  showLoading = (type?: string, opts?: Object): void => { this.chart.showLoading(); }
+  off = (eventName: string, handler?: Function): void => {
+    this.chart.off(eventName, handler);
+  }
 
-  hideLoading = (): void => { this.chart.hideLoading(); }
+  showLoading = (type?: string, opts?: Object): void => {
+    this.chart.showLoading();
+  }
 
-  clear = (): void => { this.chart.clear(); }
+  hideLoading = (): void => {
+    this.chart.hideLoading();
+  }
 
-  isDisposed = (): boolean => { return this.chart.isDisposed(); }
+  clear = (): void => {
+    this.chart.clear();
+  }
+
+  isDisposed = (): boolean => {
+    return this.chart.isDisposed();
+  }
 }

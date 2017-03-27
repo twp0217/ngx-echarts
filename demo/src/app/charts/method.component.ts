@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 
-import { EChartOption } from 'echarts-ng2';
+import { EChartOption, ECharts } from 'echarts-ng2';
 
 @Component({
-    selector: 'basic-charts',
-    templateUrl: 'basic.component.html'
+    selector: 'method-charts',
+    templateUrl: 'method.component.html'
 })
-export class BasicComponent {
+export class MethodComponent {
+    @ViewChild('echarts') echarts: ECharts
     option: EChartOption = {
         title: {
             text: 'ECharts 入门示例'
@@ -25,4 +26,13 @@ export class BasicComponent {
             data: [5, 20, 36, 10, 10, 20]
         }]
     };
+
+    onEvent() {
+        this.echarts.on('click', (params: Object) => {
+            console.log(params);
+        });
+    }
+    offEvent() {
+        this.echarts.off('click');
+    }
 }

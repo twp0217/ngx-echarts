@@ -3,10 +3,10 @@ import { Component } from '@angular/core';
 import { EChartOption } from 'echarts-ng2';
 
 @Component({
-    selector: 'basic-charts',
-    templateUrl: 'basic.component.html'
+    selector: 'setting-charts',
+    templateUrl: 'setting.component.html'
 })
-export class BasicComponent {
+export class SettingComponent {
     option: EChartOption = {
         title: {
             text: 'ECharts 入门示例'
