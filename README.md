@@ -69,8 +69,9 @@ option = {
 ## 属性(Attributes)
 名称 | 类型 | 默认值 | 说明
 ---|---|---|---
-option | Object | null | [配置项](http://echarts.baidu.com/option.html)
 theme | Object/string | default | 主题
+option | Object | null | [配置项](http://echarts.baidu.com/option.html)
+style | Object | - | 样式
 
 ## 事件(Events)
 名称 | 返回值 | 说明

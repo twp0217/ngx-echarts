@@ -8,7 +8,16 @@ import { ECharts as IECharts } from '../';
 
 @Component({
   selector: 'echarts-ng2',
-  template: '<div #host [ngStyle]="style"></div>'
+  template: '<div #host [ngStyle]="style" class="echartsInstance"></div>',
+  styles: [
+    ` 
+      .echartsInstance{
+          display: inline-block;
+          width: 600px;
+          height: 400px;
+      }
+    `
+  ]
 })
 export class EchartsNg2Component implements AfterViewInit, OnDestroy, IECharts {
   private chart: ECharts;
@@ -24,7 +33,7 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, IECharts {
     }
   }
   get option(): EChartOption { return this._option; }
-  @Input() style: any = {'width':'600px', height: '400px'};
+  @Input() style: any;
 
   @Output() onBeforeInit: EventEmitter<any> = new EventEmitter();
   @Output() onAfterInit: EventEmitter<any> = new EventEmitter();

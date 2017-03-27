@@ -23,7 +23,7 @@
     "url": "https://github.com/twp0217/echarts-ng2/issues"
   },
   "homepage": "https://github.com/twp0217/echarts-ng2#readme",
-  "peerDependencies": {
+  "dependencies": {
     "@types/echarts": "0.0.5",
     "echarts": "^3.4.0"
   },
