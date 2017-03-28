@@ -1,3 +1,4 @@
+<h3>属性(Attributes)</h3>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -29,6 +30,7 @@
     </tbody>
 </table>
 
+<h3>事件(Events)</h3>
 <table class="table table-bordered">
     <thead>
         <tr>
@@ -52,6 +54,104 @@
             <td>onOptionChange</td>
             <td>option: EChartOption</td>
             <td>图表配置项变更</td>
+        </tr>
+    </tbody>
+</table>
+
+<h3>方法(Methods)</h3>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>名称</th>
+            <th>参数</th>
+            <th>返回类型</th>
+            <th>说明</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>setOption</td>
+            <td>(option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean)</td>
+            <td>-</td>
+            <td>设置图表实例的配置项以及数据</td>
+        </tr>
+        <tr>
+            <td>getWidth</td>
+            <td>-</td>
+            <td>number</td>
+            <td>获取 ECharts 实例容器的宽度</td>
+        </tr>
+        <tr>
+            <td>getHeight</td>
+            <td>-</td>
+            <td>number</td>
+            <td>获取 ECharts 实例容器的高度</td>
+        </tr>
+        <tr>
+            <td>getDom</td>
+            <td>-</td>
+            <td>HTMLCanvasElement|HTMLDivElement</td>
+            <td>获取 ECharts 实例容器的 dom 节点</td>
+        </tr>
+        <tr>
+            <td>getOption</td>
+            <td>-</td>
+            <td>EChartOption</td>
+            <td>获取当前实例中维护的option对象</td>
+        </tr>
+        <tr>
+            <td>resize</td>
+            <td>-</td>
+            <td>-</td>
+            <td>改变图表尺寸，在容器大小发生改变时需要手动调用</td>
+        </tr>
+        <tr>
+            <td>dispatchAction</td>
+            <td>(payload: Object)</td>
+            <td>-</td>
+            <td>触发图表行为</td>
+        </tr>
+        <tr>
+            <td>on</td>
+            <td>(eventName: string, handler: Function, context?: Object)</td>
+            <td>-</td>
+            <td>绑定事件处理函数</td>
+        </tr>
+        <tr>
+            <td>off</td>
+            <td>(eventName: string, handler?: Function)</td>
+            <td>-</td>
+            <td>解绑事件处理函数</td>
+        </tr>
+        <tr>
+            <td>showLoading</td>
+            <td>(type?: string, opts?: Object)</td>
+            <td>-</td>
+            <td>显示加载动画效果</td>
+        </tr>
+        <tr>
+            <td>hideLoading</td>
+            <td>-</td>
+            <td>-</td>
+            <td>隐藏动画加载效果</td>
+        </tr>
+        <tr>
+            <td>clear</td>
+            <td>-</td>
+            <td>-</td>
+            <td>清空当前实例，会移除实例中所有的组件和图表</td>
+        </tr>
+        <tr>
+            <td>isDisposed</td>
+            <td>-</td>
+            <td>boolean</td>
+            <td>当前实例是否已经被释放</td>
+        </tr>
+        <tr>
+            <td>dispose</td>
+            <td>-</td>
+            <td>-</td>
+            <td>销毁实例，销毁后实例无法再被使用</td>
         </tr>
     </tbody>
 </table>
