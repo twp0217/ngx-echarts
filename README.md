@@ -66,7 +66,7 @@ option = {
 <echarts-ng2 [option]="option" style="width: 800px; height: 500px;"></echarts-ng2>
 ```
 
-# [文档](https://twp0217.github.io/echarts-ng2/documentation)
+# [文档](https://twp0217.github.io/echarts-ng2/#/documentation)
 
 ## 属性(Attributes)
 名称 | 类型 | 默认值 | 说明
@@ -84,7 +84,7 @@ onOptionChange | option: EChartOption | 图表配置项变更
 
 ## 方法(Methods)
 名称 | 参数 | 返回类型 | 说明
----|---|---
+---|---|---|---
 setOption | (option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean) | - | 设置图表实例的配置项以及数据
 getWidth | - | number | 获取 ECharts 实例容器的宽度
 getHeight | - | number | 获取 ECharts 实例容器的高度
