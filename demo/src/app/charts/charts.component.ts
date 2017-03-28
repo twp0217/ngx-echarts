@@ -24,9 +24,8 @@ export class ChartsComponent implements AfterContentInit {
     ngAfterContentInit() {
         setTimeout(() => {
             if (typeof PR !== 'undefined') {
-                // google code-prettify
                 PR.prettyPrint();
             }
-        }, 150);
+        }, 300);
     }
 }
