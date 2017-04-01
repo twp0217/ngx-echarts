@@ -21,6 +21,9 @@ export class ChartsComponent implements AfterContentInit {
     methodHtml = require("!!html-loader!./method.component.html");
     methodTs = require("!!raw-loader!./method.component.ts");
 
+    calendarHtml = require("!!html-loader!./calendar.component.html");
+    calendarTs = require("!!raw-loader!./calendar.component.ts");
+
     ngAfterContentInit() {
         setTimeout(() => {
             if (typeof PR !== 'undefined') {

@@ -1,5 +1,5 @@
 export interface EChartOption {
-    title?: EChartTitleOption
+    title?: Object,
     legend?: Object,
     grid?: Object,
     xAxis?: Object,
@@ -9,77 +9,62 @@ export interface EChartOption {
     angleAxis?: Object,
     radar?: Object,
     dataZoom?: Array<Object>,
-    visualMap?: Array<Object>,
+    visualMap?: Object | Array<Object>,
     tooltip?: Object,
+    axisPointer?: Object,
     toolbox?: Object,
+    brush?: Object,
     geo?: Object,
     parallel?: Object,
     parallelAxis?: Object,
+    singleAxis?: Object,
     timeline?: Object,
+    graphic?: Object | Array<Object>,
+    calendar?: Object,
     series?: Array<Object>,
     color?: Array<Object>,
     backgroundColor?: string,
     textStyle?: Object,
     animation?: boolean,
+    animationThreshold?: boolean,
     animationDuration?: number,
     animationEasing?: string,
+    animationDelay?: number,
     animationDurationUpdate?: number,
-    animationEasingUpdate?: string
-}
-
-export interface EChartTitleOption {
-    show?: boolean;
-    text?: string;
-    link?: string,
-    target?: string,
-    textStyle?: Object,
-    subtext?: string,
-    sublink?: string,
-    subtarget?: string,
-    subtextStyle?: Object,
-    padding?: number,
-    itemGap?: number,
-    zlevel?: number,
-    z?: number,
-    left?: string,
-    top?: string,
-    right?: string,
-    bottom?: string,
-    backgroundColor?: string,
-    borderColor?: string,
-    borderWidth?: number,
-    shadowBlur?: number,
-    shadowColor?: number,
-    shadowOffsetX?: number,
-    shadowOffsetY?: number,
+    animationEasingUpdate?: string,
+    animationDelayUpdate?: string,
+    progressive?: number,
+    progressiveThreshold?: number,
+    blendMode?: string,
+    hoverLayerThreshold?: number
 }
 
 export interface ECharts {
-    setOption(option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean): void
+    setOption(option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean): void;
 
-    getWidth(): number
+    getWidth(): number;
 
-    getHeight(): number
+    getHeight(): number;
 
-    getDom(): HTMLCanvasElement | HTMLDivElement
+    getDom(): HTMLCanvasElement | HTMLDivElement;
 
-    getOption(): Object
+    getOption(): Object;
 
-    resize(): void
+    resize(): void;
 
-    dispatchAction(payload: Object): void
+    dispatchAction(payload: Object): void;
 
-    on(eventName: string, handler: Function, context?: Object): void
+    on(eventName: string, handler: Function, context?: Object): void;
 
-    off(eventName: string, handler?: Function): void
+    off(eventName: string, handler?: Function): void;
 
-    showLoading(type?: string, opts?: Object): void
+    showLoading(type?: string, opts?: Object): void;
 
-    hideLoading(): void
+    hideLoading(): void;
 
-    clear(): void
+    clear(): void;
 
-    isDisposed(): boolean
+    isDisposed(): boolean;
 
-    dispose(): void
+    dispose(): void;
 }
