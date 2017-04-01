@@ -1,5 +1,5 @@
 export interface EChartOption {
-    title?: EChartTitleOption
+    title?: Object,
     legend?: Object,
     grid?: Object,
     xAxis?: Object,
@@ -9,49 +9,34 @@ export interface EChartOption {
     angleAxis?: Object,
     radar?: Object,
     dataZoom?: Array<Object>,
-    visualMap?: Array<Object>,
+    visualMap?: Object | Array<Object>,
     tooltip?: Object,
+    axisPointer?: Object,
     toolbox?: Object,
+    brush?: Object,
     geo?: Object,
     parallel?: Object,
     parallelAxis?: Object,
+    singleAxis?: Object,
     timeline?: Object,
+    graphic?: Object | Array<Object>,
+    calendar?: Object,
     series?: Array<Object>,
     color?: Array<Object>,
     backgroundColor?: string,
     textStyle?: Object,
     animation?: boolean,
+    animationThreshold?: boolean,
     animationDuration?: number,
     animationEasing?: string,
+    animationDelay?: number,
     animationDurationUpdate?: number,
-    animationEasingUpdate?: string
-}
-
-export interface EChartTitleOption {
-    show?: boolean;
-    text?: string;
-    link?: string,
-    target?: string,
-    textStyle?: Object,
-    subtext?: string,
-    sublink?: string,
-    subtarget?: string,
-    subtextStyle?: Object,
-    padding?: number,
-    itemGap?: number,
-    zlevel?: number,
-    z?: number,
-    left?: string,
-    top?: string,
-    right?: string,
-    bottom?: string,
-    backgroundColor?: string,
-    borderColor?: string,
-    borderWidth?: number,
-    shadowBlur?: number,
-    shadowColor?: number,
-    shadowOffsetX?: number,
-    shadowOffsetY?: number,
+    animationEasingUpdate?: string,
+    animationDelayUpdate?: string,
+    progressive?: number,
+    progressiveThreshold?: number,
+    blendMode?: string,
+    hoverLayerThreshold?: number
 }
 
 export interface ECharts {

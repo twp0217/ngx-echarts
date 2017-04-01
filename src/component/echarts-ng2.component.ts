@@ -1,20 +1,17 @@
 import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
 
 import * as echarts from 'echarts';
-import ECharts = echarts.ECharts;
-import EChartOption = echarts.EChartOption;
 
-import { ECharts as IECharts } from '../';
+import { EChartOption, ECharts } from './api';
 
 @Component({
   selector: 'echarts-ng2',
-  template: '<div #host [ngStyle]="style" class="inline-block"></div>',
-  styles: ['.inline-block { display: inline-block; }']
+  template: '<div #host [ngStyle]="style"></div>'
 })
-export class EchartsNg2Component implements AfterViewInit, OnDestroy, IECharts {
+export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   private chart: ECharts;
   private _option: EChartOption;
-  private opts = { 'width': 600, 'height': 400 }
+  private opts = { 'height': 400 }
 
   @Input() theme: Object|string = "default";
   @Input()
@@ -110,6 +107,6 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, IECharts {
   }
 
   isDisposed = (): boolean => {
-    return this.chart.isDisposed();
+    return this.chart ? this.chart.isDisposed():true;
   }
 }
