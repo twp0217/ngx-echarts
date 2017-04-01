@@ -40,31 +40,31 @@ export interface EChartOption {
 }
 
 export interface ECharts {
-    setOption(option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean): void
+    setOption(option: EChartOption, notMerge?: boolean, lazyUpdate?: boolean): void;
 
-    getWidth(): number
+    getWidth(): number;
 
-    getHeight(): number
+    getHeight(): number;
 
-    getDom(): HTMLCanvasElement | HTMLDivElement
+    getDom(): HTMLCanvasElement | HTMLDivElement;
 
-    getOption(): Object
+    getOption(): Object;
 
-    resize(): void
+    resize(): void;
 
-    dispatchAction(payload: Object): void
+    dispatchAction(payload: Object): void;
 
-    on(eventName: string, handler: Function, context?: Object): void
+    on(eventName: string, handler: Function, context?: Object): void;
 
-    off(eventName: string, handler?: Function): void
+    off(eventName: string, handler?: Function): void;
 
-    showLoading(type?: string, opts?: Object): void
+    showLoading(type?: string, opts?: Object): void;
 
-    hideLoading(): void
+    hideLoading(): void;
 
-    clear(): void
+    clear(): void;
 
-    isDisposed(): boolean
+    isDisposed(): boolean;
 
-    dispose(): void
+    dispose(): void;
 }

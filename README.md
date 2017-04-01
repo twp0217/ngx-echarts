@@ -9,6 +9,14 @@
 npm install echarts-ng2 --save
 ```
 
+### 注：如果编译错误，提示如下，请安装依赖`@types/echarts`或者升级`typescript`版本到2.1以上
+
+> echarts-ng2.component.ts (3,26): Cannot find module 'echarts'
+
+```
+npm install @types/echarts --save-dev
+```
+
 ## 使用
 - 安装依赖包：`echarts` 和 `echarts-ng2`
 
