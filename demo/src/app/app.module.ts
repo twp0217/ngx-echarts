@@ -18,6 +18,7 @@ import { BasicComponent } from './charts/basic.component';
 import { SettingComponent } from './charts/setting.component';
 import { EventComponent } from './charts/event.component';
 import { MethodComponent } from './charts/method.component';
+import { CalendarComponent } from './charts/calendar.component';
 
 import { DocumentationComponent } from './documentation/documentation.component';
 
@@ -29,6 +30,7 @@ import { DocumentationComponent } from './documentation/documentation.component'
     SettingComponent,
     EventComponent,
     MethodComponent,
+    CalendarComponent,
     DocumentationComponent
   ],
   imports: [
