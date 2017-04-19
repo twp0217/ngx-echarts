@@ -74,6 +74,11 @@ option = {
 <echarts-ng2 [option]="option" style="width: 800px; height: 500px;"></echarts-ng2>
 ```
 
+# 支持
+
+- 如果项目对你有帮助，请点颗星:star:，谢谢。
+- 如果对项目有想法、问题、BUG，欢迎发[issue](https://github.com/twp0217/echarts-angular/issues)讨论。
+
 # [文档](https://twp0217.github.io/echarts-ng2/#/documentation)
 
 ## 属性(Attributes)
