@@ -1,4 +1,4 @@
-import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy } from '@angular/core';
+import { Component, ElementRef, Input, Output, EventEmitter, ViewChild, AfterViewInit, OnDestroy, NgZone } from '@angular/core';
 
 import * as echarts from 'echarts';
 
@@ -32,7 +32,8 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   @ViewChild('host') host;
 
   constructor(
-    private el: ElementRef
+    private el: ElementRef,
+    private ngZone: NgZone
   ) { }
 
   ngAfterViewInit() {
@@ -46,11 +47,15 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
 
   init = () => {
     if (!this.chart) {
-      this.onBeforeInit.emit();
-      this.chart = echarts.init(this.host.nativeElement, this.theme, this.style ? {}:this.opts);
-      this.onAfterInit.emit();
+      this.ngZone.runOutsideAngular(() => {
+        this.onBeforeInit.emit();
+        this.chart = echarts.init(this.host.nativeElement, this.theme, this.style ? {} : this.opts);
+        this.onAfterInit.emit();
+        this.option && this.chart.setOption(this.option);
+      });
+    } else {
+      this.option && this.chart.setOption(this.option);
     }
-    this.option && this.chart.setOption(this.option);
   }
 
   dispose = (): void => {
