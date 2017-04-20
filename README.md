@@ -77,7 +77,7 @@ option = {
 # 支持
 
 - 如果项目对你有帮助，请点颗星:star:，谢谢。
-- 如果对项目有想法、问题、BUG，欢迎发[issue](https://github.com/twp0217/echarts-angular/issues)讨论。
+- 如果你对项目有想法、问题、BUG，欢迎讨论。
 
 # [文档](https://twp0217.github.io/echarts-ng2/#/documentation)
 
