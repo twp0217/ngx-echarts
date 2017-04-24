@@ -15,6 +15,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { ChartsComponent } from './charts/charts.component';
 import { BasicComponent } from './charts/basic.component';
+import { ThemeComponent } from './charts/theme.component';
 import { SettingComponent } from './charts/setting.component';
 import { EventComponent } from './charts/event.component';
 import { MethodComponent } from './charts/method.component';
@@ -27,6 +28,7 @@ import { DocumentationComponent } from './documentation/documentation.component'
     AppComponent,
     ChartsComponent,
     BasicComponent,
+    ThemeComponent,
     SettingComponent,
     EventComponent,
     MethodComponent,

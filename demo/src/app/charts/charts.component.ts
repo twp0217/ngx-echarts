@@ -12,6 +12,9 @@ export class ChartsComponent implements AfterContentInit {
     basicHtml = require("!!html-loader!./basic.component.html");
     basicTs = require("!!raw-loader!./basic.component.ts");
 
+    themeHtml = require("!!html-loader!./theme.component.html");
+    themeTs = require("!!raw-loader!./theme.component.ts");
+
     settingHtml = require("!!html-loader!./setting.component.html");
     settingTs = require("!!raw-loader!./setting.component.ts");
 
