@@ -23,9 +23,15 @@
         </tr>
         <tr>
             <td>style</td>
-            <td>string</td>
+            <td>Object</td>
             <td>-</td>
             <td>样式</td>
+        </tr>
+        <tr>
+            <td>group</td>
+            <td>string</td>
+            <td>-</td>
+            <td>图表的分组</td>
         </tr>
     </tbody>
 </table>
@@ -152,6 +158,18 @@
             <td>-</td>
             <td>-</td>
             <td>销毁实例，销毁后实例无法再被使用</td>
+        </tr>
+        <tr>
+            <td>connect</td>
+            <td>(group:string)</td>
+            <td>-</td>
+            <td>多个图表实例实现联动</td>
+        </tr>
+        <tr>
+            <td>disconnect</td>
+            <td>(group:string)</td>
+            <td>-</td>
+            <td>解除图表实例的联动</td>
         </tr>
     </tbody>
 </table>
