@@ -87,6 +87,7 @@ option = {
 theme | Object/string | default | 主题
 option | Object | null | [配置项](http://echarts.baidu.com/option.html)
 style | Object | - | 样式
+group | string | - | 图表的分组
 
 ## 事件(Events)
 名称 | 返回值 | 说明
@@ -103,7 +104,7 @@ getWidth | - | number | 获取 ECharts 实例容器的宽度
 getHeight | - | number | 获取 ECharts 实例容器的高度
 getDom | - | HTMLCanvasElement|HTMLDivElement | 获取 ECharts 实例容器的 dom 节点
 getOption | - | EChartOption | 获取当前实例中维护的option对象
-resize | - | - | 改变图表尺寸，在容器大小发生改变时需要手动调用
+resize | (opts?: Object) | - | 改变图表尺寸，在容器大小发生改变时需要手动调用
 dispatchAction | (payload: Object) | - | 触发图表行为
 on | (eventName: string, handler: Function, context?: Object) | - | 绑定事件处理函数
 off | (eventName: string, handler?: Function) | - | 解绑事件处理函数
@@ -112,6 +113,8 @@ hideLoading | - | - | 隐藏动画加载效果
 clear | - | - | 清空当前实例，会移除实例中所有的组件和图表
 isDisposed | - | boolean | 当前实例是否已经被释放
 dispose | - | - | 销毁实例，销毁后实例无法再被使用
+connect | (group:string) | - | 多个图表实例实现联动
+disconnect | (group:string) | - | 解除图表实例的联动
 
 ---
 

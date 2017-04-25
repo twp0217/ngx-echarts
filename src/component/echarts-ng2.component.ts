@@ -11,7 +11,11 @@ import { EChartOption, ECharts } from './api';
 export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   private chart: ECharts;
   private _option: EChartOption;
-  private opts = { 'height': 400 }
+  private opts = { 'height': 400 };
+  private _group: string;
+  private setGroup(){
+    this.chart && (typeof this._group !== 'undefined') && ((<any>this.chart).group = this._group);
+  }
 
   @Input() theme: Object|string = "default";
   @Input()
@@ -24,6 +28,12 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   }
   get option(): EChartOption { return this._option; }
   @Input() style: any;
+  @Input()
+  set group(group: string) {
+    this._group = group;
+    this.setGroup();
+  }
+  get group(): string { return this._group; }
 
   @Output() onBeforeInit: EventEmitter<any> = new EventEmitter();
   @Output() onAfterInit: EventEmitter<any> = new EventEmitter();
@@ -52,6 +62,7 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
         this.chart = echarts.init(this.host.nativeElement, this.theme, this.style ? {} : this.opts);
         this.onAfterInit.emit();
         this.option && this.chart.setOption(this.option);
+        this.setGroup();
       });
     } else {
       this.option && this.chart.setOption(this.option);
@@ -83,8 +94,8 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
     return this.chart.getOption();
   }
 
-  resize = (): void => {
-    this.chart.resize();
+  resize = (opts?: { width?: number | string, height?: number | string, silent?: boolean }): void => {
+    this.chart.resize(opts);
   }
 
   dispatchAction = (payload: Object): void => {
@@ -113,5 +124,15 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
 
   isDisposed = (): boolean => {
     return this.chart ? this.chart.isDisposed():true;
+  }
+
+  // ----- line -----
+
+  connect = (group:string): void => {
+    echarts.connect(group);
+  }
+  
+  disconnect = (group:string): void => {
+    echarts.disconnect(group);
   }
 }

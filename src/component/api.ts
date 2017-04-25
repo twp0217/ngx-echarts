@@ -50,7 +50,7 @@ export interface ECharts {
 
     getOption(): Object;
 
-    resize(): void;
+    resize(opts?: { width?: number | string, height?: number | string, silent?: boolean }): void;
 
     dispatchAction(payload: Object): void;
 
@@ -67,4 +67,10 @@ export interface ECharts {
     isDisposed(): boolean;
 
     dispose(): void;
+
+    // ----- line -----
+
+    connect(group:string): void;
+
+    disconnect(group:string): void;
 }
