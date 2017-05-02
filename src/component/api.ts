@@ -58,6 +58,60 @@ export interface ECharts {
 
     off(eventName: string, handler?: Function): void;
 
+    convertToPixel(finder: {
+        seriesIndex?: number,
+        seriesId?: string,
+        seriesName?: string,
+        geoIndex?: number,
+        geoId?: string,
+        geoName?: string,
+        xAxisIndex?: number,
+        xAxisId?: string,
+        xAxisName?: string,
+        yAxisIndex?: number,
+        yAxisId?: string,
+        yAxisName?: string,
+        gridIndex?: number,
+        gridId?: string
+        gridName?: string
+    } | string, value: Array<any> | string): Array<any> | string;
+
+    convertFromPixel(finder: {
+        seriesIndex?: number,
+        seriesId?: string,
+        seriesName?: string,
+        geoIndex?: number,
+        geoId?: string,
+        geoName?: string,
+        xAxisIndex?: number,
+        xAxisId?: string,
+        xAxisName?: string,
+        yAxisIndex?: number,
+        yAxisId?: string,
+        yAxisName?: string,
+        gridIndex?: number,
+        gridId?: string
+        gridName?: string
+    } | string, value: Array<any> | string): Array<any> | string;
+
+    containPixel(finder: {
+        seriesIndex?: number,
+        seriesId?: string,
+        seriesName?: string,
+        geoIndex?: number,
+        geoId?: string,
+        geoName?: string,
+        xAxisIndex?: number,
+        xAxisId?: string,
+        xAxisName?: string,
+        yAxisIndex?: number,
+        yAxisId?: string,
+        yAxisName?: string,
+        gridIndex?: number,
+        gridId?: string
+        gridName?: string
+    } | string, value: Array<any>): boolean;
+
     showLoading(type?: string, opts?: Object): void;
 
     hideLoading(): void;
@@ -70,7 +124,7 @@ export interface ECharts {
 
     // ----- line -----
 
-    connect(group:string): void;
+    connect(group: string): void;
 
-    disconnect(group:string): void;
+    disconnect(group: string): void;
 }
