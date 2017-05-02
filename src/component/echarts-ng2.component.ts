@@ -13,11 +13,11 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   private _option: EChartOption;
   private opts = { 'height': 400 };
   private _group: string;
-  private setGroup(){
+  private setGroup() {
     this.chart && (typeof this._group !== 'undefined') && ((<any>this.chart).group = this._group);
   }
 
-  @Input() theme: Object|string = "default";
+  @Input() theme: Object | string = "default";
   @Input()
   set option(option: EChartOption) {
     this._option = option;
@@ -110,6 +110,66 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
     this.chart.off(eventName, handler);
   }
 
+  convertToPixel = (finder: {
+    seriesIndex?: number,
+    seriesId?: string,
+    seriesName?: string,
+    geoIndex?: number,
+    geoId?: string,
+    geoName?: string,
+    xAxisIndex?: number,
+    xAxisId?: string,
+    xAxisName?: string,
+    yAxisIndex?: number,
+    yAxisId?: string,
+    yAxisName?: string,
+    gridIndex?: number,
+    gridId?: string
+    gridName?: string
+  } | string, value: Array<any> | string): Array<any> | string => {
+    return this.chart.convertToPixel(finder, value);
+  }
+
+  convertFromPixel = (finder: {
+    seriesIndex?: number,
+    seriesId?: string,
+    seriesName?: string,
+    geoIndex?: number,
+    geoId?: string,
+    geoName?: string,
+    xAxisIndex?: number,
+    xAxisId?: string,
+    xAxisName?: string,
+    yAxisIndex?: number,
+    yAxisId?: string,
+    yAxisName?: string,
+    gridIndex?: number,
+    gridId?: string
+    gridName?: string
+  } | string, value: Array<any> | string): Array<any> | string => {
+    return this.chart.convertFromPixel(finder, value);
+  }
+
+  containPixel = (finder: {
+    seriesIndex?: number,
+    seriesId?: string,
+    seriesName?: string,
+    geoIndex?: number,
+    geoId?: string,
+    geoName?: string,
+    xAxisIndex?: number,
+    xAxisId?: string,
+    xAxisName?: string,
+    yAxisIndex?: number,
+    yAxisId?: string,
+    yAxisName?: string,
+    gridIndex?: number,
+    gridId?: string
+    gridName?: string
+  } | string, value: Array<any>): boolean => {
+    return this.chart.containPixel(finder, value);
+  }
+
   showLoading = (type?: string, opts?: Object): void => {
     this.chart.showLoading();
   }
@@ -123,16 +183,16 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   }
 
   isDisposed = (): boolean => {
-    return this.chart ? this.chart.isDisposed():true;
+    return this.chart ? this.chart.isDisposed() : true;
   }
 
   // ----- line -----
 
-  connect = (group:string): void => {
+  connect = (group: string): void => {
     echarts.connect(group);
   }
-  
-  disconnect = (group:string): void => {
+
+  disconnect = (group: string): void => {
     echarts.disconnect(group);
   }
 }
