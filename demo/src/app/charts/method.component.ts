@@ -7,7 +7,7 @@ import { EChartOption, ECharts } from 'echarts-ng2';
     templateUrl: 'method.component.html'
 })
 export class MethodComponent {
-    @ViewChild('echarts') echarts: ECharts
+    @ViewChild('echarts') echarts: ECharts;
     option: EChartOption = {
         title: {
             text: 'ECharts 入门示例'
