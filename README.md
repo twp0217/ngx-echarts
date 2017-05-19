@@ -71,7 +71,7 @@ option = {
 - 在模板页面使用
 
 ```
-<echarts-ng2 [option]="option" style="width: 800px; height: 500px;"></echarts-ng2>
+<echarts-ng2 [option]="option"></echarts-ng2>
 ```
 
 # 支持
