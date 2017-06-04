@@ -2,13 +2,19 @@
   "name": "echarts-ng2",
   "version": "1.4.1",
   "description": "Angular2 ECharts component",
-  "main": "src/index.js",
+  "main": "bundles/echarts-ng2.umd.js",
+  "module": "src/index.js",
   "typings": "src/index.d.ts",
   "scripts": {
     "ngc": "ngc",
+    "webpack": "webpack",
+    "clean": "rimraf bundles",
+    "webpack:uglify": "webpack --config webpack.config.uglify.js",
     "changelog:init": "conventional-changelog -i CHANGELOG.md -s -p angular -r 0",
     "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
-    "prepublish": "ngc"
+    "bundles": "npm run clean && npm run webpack && npm run webpack:uglify",
+    "build": "npm run bundles && npm run ngc",
+    "prepublish": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -34,9 +40,15 @@
     "@angular/compiler": "^2.4.0",
     "@angular/compiler-cli": "^2.4.0",
     "@angular/core": "^2.4.0",
+    "awesome-typescript-loader": "^3.1.3",
+    "codelyzer": "^3.0.1",
     "conventional-changelog-cli": "^1.3.1",
+    "rimraf": "^2.6.1",
     "rxjs": "^5.2.0",
+    "tslint": "^5.4.2",
+    "tslint-loader": "^3.5.3",
     "typescript": "^2.1.5",
+    "webpack": "^2.6.1",
     "zone.js": "^0.7.6"
   }
 }

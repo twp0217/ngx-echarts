@@ -17,7 +17,7 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
     this.chart && (typeof this._group !== 'undefined') && ((<any>this.chart).group = this._group);
   }
 
-  @Input() theme: Object | string = "default";
+  @Input() theme: Object | string = 'default';
   @Input()
   set option(option: EChartOption) {
     this._option = option;
@@ -39,7 +39,7 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   @Output() onAfterInit: EventEmitter<any> = new EventEmitter();
   @Output() onOptionChange: EventEmitter<any> = new EventEmitter();
 
-  @ViewChild('host') host;
+  @ViewChild('host') host: ElementRef;
 
   constructor(
     private el: ElementRef,
@@ -59,7 +59,7 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
     if (!this.chart) {
       this.ngZone.runOutsideAngular(() => {
         this.onBeforeInit.emit();
-        this.chart = echarts.init(this.host.nativeElement, this.theme, this.style ? {} : this.opts);
+        this.chart = <any>(echarts.init(this.host.nativeElement, this.theme, this.style ? {} : this.opts));
         this.onAfterInit.emit();
         this.option && this.chart.setOption(this.option);
         this.setGroup();
@@ -193,6 +193,6 @@ export class EchartsNg2Component implements AfterViewInit, OnDestroy, ECharts {
   }
 
   disconnect = (group: string): void => {
-    echarts.disconnect(group);
+    (<any>echarts).disconnect(group);
   }
 }
