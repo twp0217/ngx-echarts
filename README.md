@@ -5,7 +5,7 @@
 
 ## 安装
 
-```
+```javascript
 npm install echarts-ng2 --save
 ```
 
@@ -13,20 +13,20 @@ npm install echarts-ng2 --save
 
 > echarts-ng2.component.ts (3,26): Cannot find module 'echarts'
 
-```
+```javascript
 npm install @types/echarts --save-dev
 ```
 
 ## 使用
 - 安装依赖包：`echarts` 和 `echarts-ng2`
 
-```
+```javascript
 npm install --save echarts echarts-ng2
 ```
 
 - 在module导入`EchartsNg2Module`
 
-```
+```javascript
 import { EchartsNg2Module } from 'echarts-ng2';
 
 @NgModule({
@@ -47,7 +47,7 @@ export class AppModule { }
 
 - 准备图表数据
 
-```
+```javascript
 option = {
   title: {
     text: 'ECharts 入门示例'
@@ -70,8 +70,17 @@ option = {
 
 - 在模板页面使用
 
-```
+```html
 <echarts-ng2 [option]="option"></echarts-ng2>
+```
+
+### system.js 配置
+在 `map` 中添加以下配置
+
+```javascript
+map: {
+  'echarts-ng2': 'npm:echarts-ng2/bundles/echarts-ng2.umd.min.js'
+}
 ```
 
 # 支持
