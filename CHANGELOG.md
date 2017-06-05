@@ -1,5 +1,10 @@
 <a name="1.4.1"></a>
-## [1.4.1](https://github.com/twp0217/echarts-ng2/compare/v1.4.0...v1.4.1) (2017-06-03)
+## [1.4.1](https://github.com/twp0217/echarts-ng2/compare/v1.4.0...v1.4.1) (2017-06-05)
+
+
+### Features
+
+* **umd:** 增加echarts-ng2.umd.js ([9b1ca44](https://github.com/twp0217/echarts-ng2/commit/9b1ca44))
 
 
 
