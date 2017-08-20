@@ -116,6 +116,28 @@ export interface ECharts {
 
     hideLoading(): void;
 
+    getDataURL(opts: {
+        // 导出的格式，可选 png, jpeg
+        type?: string,
+        // 导出的图片分辨率比例，默认为 1。
+        pixelRatio?: number,
+        // 导出的图片背景色，默认使用 option 里的 backgroundColor
+        backgroundColor?: string,
+        // 忽略组件的列表，例如要忽略 toolbox 就是 ['toolbox']
+        excludeComponents?: Array<string>
+    }): string;
+
+    getConnectedDataURL(opts: {
+        // 导出的格式，可选 png, jpeg
+        type?: string,
+        // 导出的图片分辨率比例，默认为 1。
+        pixelRatio?: number,
+        // 导出的图片背景色，默认使用 option 里的 backgroundColor
+        backgroundColor?: string,
+        // 忽略组件的列表，例如要忽略 toolbox 就是 ['toolbox']
+        excludeComponents?: Array<string>
+    }): string;
+
     clear(): void;
 
     isDisposed(): boolean;
