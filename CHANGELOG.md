@@ -1,3 +1,35 @@
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/twp0217/echarts-ng2/compare/v1.4.1...v5.0.0) (2018-03-12)
+
+
+### Bug Fixes
+
+* Fixes [#17](https://github.com/twp0217/echarts-ng2/issues/17) ([a326ce1](https://github.com/twp0217/echarts-ng2/commit/a326ce1))
+* Fixes [#27](https://github.com/twp0217/echarts-ng2/issues/27) 更新编译程序，升级angular5 ([c1f6653](https://github.com/twp0217/echarts-ng2/commit/c1f6653))
+
+
+
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/twp0217/echarts-ng2/compare/v1.4.1...v5.0.0) (2018-03-12)
+
+
+### Bug Fixes
+
+* Fixes [#17](https://github.com/twp0217/echarts-ng2/issues/17) ([a326ce1](https://github.com/twp0217/echarts-ng2/commit/a326ce1))
+* Fixes [#27](https://github.com/twp0217/echarts-ng2/issues/27) sss ([2b242ec](https://github.com/twp0217/echarts-ng2/commit/2b242ec))
+
+
+
+<a name="5.0.0"></a>
+# [5.0.0](https://github.com/twp0217/echarts-ng2/compare/v1.4.1...v5.0.0) (2018-03-12)
+
+
+### Bug Fixes
+
+* Fixes [#17](https://github.com/twp0217/echarts-ng2/issues/17) ([a326ce1](https://github.com/twp0217/echarts-ng2/commit/a326ce1))
+
+
+
 <a name="1.4.1"></a>
 ## [1.4.1](https://github.com/twp0217/echarts-ng2/compare/v1.4.0...v1.4.1) (2017-06-05)
 
