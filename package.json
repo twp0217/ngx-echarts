@@ -1,6 +1,6 @@
 {
   "name": "ngx-echarts-demo",
-  "version": "0.0.0",
+  "version": "6.0.1",
   "scripts": {
     "ng": "ng",
     "start": "npm run build:lib && ng serve",
@@ -10,6 +10,7 @@
     "changelog": "conventional-changelog -i CHANGELOG.md -s -p angular",
     "copy:readme": "ncp ./README.md ./dist/ngx-echarts/README.md",
     "publish": "npm publish ./dist/ngx-echarts --access=public",
+    "publish:demo": "ng build --base-href /ngx-echarts/ --prod && gh-pages -d ./dist/ngx-echarts-demo",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e"
@@ -42,6 +43,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "~4.2.1",
+    "gh-pages": "^2.0.1",
     "html-loader": "^0.5.5",
     "jasmine-core": "~2.99.1",
     "jasmine-spec-reporter": "~4.2.1",
