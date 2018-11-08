@@ -1,0 +1,28 @@
+{
+  "name": "@twp0217/ngx-echarts",
+  "version": "6.0.1",
+  "description": "Angular(v2+) ECharts component",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twp0217/ngx-echarts.git"
+  },
+  "keywords": [
+    "ng",
+    "ng2",
+    "ngx",
+    "angular",
+    "angular2",
+    "echarts",
+    "ngx-echarts"
+  ],
+  "author": "tu.wenpan",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twp0217/ngx-echarts/issues"
+  },
+  "homepage": "https://github.com/twp0217/ngx-echarts#readme",
+  "peerDependencies": {
+    "@angular/core": ">=6.0.0",
+    "echarts": ">=4.0.0"
+  }
+}
