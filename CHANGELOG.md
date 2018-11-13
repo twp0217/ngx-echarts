@@ -1,3 +1,12 @@
+## [6.0.2](https://github.com/twp0217/ngx-echarts/compare/v6.0.1...v6.0.2) (2018-11-13)
+
+
+### Bug Fixes
+
+* 修复默认高度的问题 ([d50a343](https://github.com/twp0217/ngx-echarts/commit/d50a343))
+
+
+
 ## [6.0.1](https://github.com/twp0217/ngx-echarts/compare/v1.4.1...v6.0.1) (2018-11-08)
 
 
