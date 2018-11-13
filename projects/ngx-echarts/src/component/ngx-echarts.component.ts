@@ -96,7 +96,8 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, OnDestroy 
   init() {
     if (!this.echartsInstance) {
       if (!(this.initOpts && this.initOpts.height)) {
-        this.host.nativeElement.style.height = "400px";
+        this.initOpts = this.initOpts || {};
+        this.initOpts.height = 400;
       }
       this.ngZone.runOutsideAngular(() => {
         this.onBeforeInit.emit();
