@@ -10,8 +10,12 @@ import {
   NgZone,
   OnChanges,
   SimpleChange,
-  SimpleChanges
+  SimpleChanges,
+  DoCheck,
+  HostListener
 } from "@angular/core";
+import { Subject, Subscription } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 
 import { init, connect, disConnect } from "echarts";
 import {
@@ -29,9 +33,15 @@ import {
 
 @Component({
   selector: "ngx-echarts",
-  template: "<div #host></div>"
+  templateUrl: './ngx-echarts.component.html',
+  styleUrls: ['./ngx-echarts.component.scss']
 })
-export class NgxEchartsComponent implements AfterViewInit, OnChanges, OnDestroy {
+export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, OnDestroy {
+  private offsetWidth: number;
+  private offsetHeight: number;
+  private resizeSubject$ = new Subject<void>();
+  private resizeSubscription$: Subscription;
+
   echartsInstance: ECharts;
 
   @Input()
@@ -54,6 +64,9 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, OnDestroy 
   @Input()
   loadingOpts: object;
 
+  @Input()
+  autoResize: boolean = false;
+
   @Output()
   onBeforeInit: EventEmitter<any> = new EventEmitter();
   @Output()
@@ -64,7 +77,31 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, OnDestroy 
   @ViewChild("host")
   host: ElementRef;
 
-  constructor(private el: ElementRef, private ngZone: NgZone) {}
+  constructor(private el: ElementRef, private ngZone: NgZone) { }
+
+  private buildSubscribe() {
+    this.resizeSubscription$ = this.resizeSubject$.pipe(debounceTime(100)).subscribe(() => {
+      this.resize();
+    });
+  }
+
+  private triggerSubscribe() {
+    if (this.autoResize && this.echartsInstance) {
+      const offsetWidth = this.el.nativeElement.offsetWidth;
+      const offsetHeight = this.el.nativeElement.offsetHeight;
+
+      if (this.offsetWidth !== offsetWidth || this.offsetHeight !== offsetHeight) {
+        this.offsetWidth = offsetWidth;
+        this.offsetHeight = offsetHeight;
+        this.resizeSubject$.next();
+      }
+    }
+  }
+  
+  @HostListener('window:resize', ['$event'])
+  windowResize(event: Event) {
+    this.triggerSubscribe();
+  }
 
   ngAfterViewInit() {
     this.init();
@@ -89,23 +126,32 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, OnDestroy 
     }
   }
 
+  ngDoCheck() {
+    this.triggerSubscribe();
+  }
+
   ngOnDestroy() {
     this.dispose();
+    if (this.resizeSubscription$) {
+      this.resizeSubscription$.unsubscribe();
+    }
   }
 
   init() {
     if (!this.echartsInstance) {
-      if (!(this.initOpts && this.initOpts.height)) {
-        this.initOpts = this.initOpts || {};
-        this.initOpts.height = 400;
+      this.offsetWidth = this.el.nativeElement.offsetWidth;
+      this.offsetHeight = this.el.nativeElement.offsetHeight;
+      if (!(this.initOpts && this.initOpts.height) && this.offsetHeight === 0) {
+        this.el.nativeElement.style.height = "500px";
       }
       this.ngZone.runOutsideAngular(() => {
         this.onBeforeInit.emit();
         this.echartsInstance = init(this.host.nativeElement, this.theme, this.initOpts);
         this.onAfterInit.emit();
-        this.setOption();
-        this.echartsInstance.group = this.group;
       });
+      this.setOption();
+      this.echartsInstance.group = this.group;
+      this.buildSubscribe();
     } else {
       this.setOption();
     }
