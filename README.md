@@ -101,6 +101,7 @@ setOptionConfig | EChartSetOptionConfig | { notMerge: true } | setOption参数
 loading | boolean | - | 加载动画 
 loadingType | string | default | 加载动画类型 
 loadingOpts | object | - | 加载动画配置项 
+autoResize | boolean | false | 自适应图表 
 
 ## 事件(Events)
 名称 | 返回值 | 说明
