@@ -1,3 +1,12 @@
+# [6.1.0](https://github.com/twp0217/ngx-echarts/compare/v6.0.2...v6.1.0) (2018-11-15)
+
+
+### Features
+
+* 增加自动调整大小(autoResize) ([2061d2c](https://github.com/twp0217/ngx-echarts/commit/2061d2c))
+
+
+
 ## [6.0.2](https://github.com/twp0217/ngx-echarts/compare/v6.0.1...v6.0.2) (2018-11-13)
 
 
