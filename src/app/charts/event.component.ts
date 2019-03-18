@@ -41,7 +41,7 @@ export class EventComponent {
     };
   }
 
-  onOptionChange(event: any) {
-    console.log(event);
+  chartEvent(event: any, eventName: string) {
+    console.log(eventName, event);
   }
 }

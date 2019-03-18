@@ -28,9 +28,6 @@ export class ChartsComponent implements AfterContentInit {
   eventHtml = require("!!html-loader!./event.component.html");
   eventTs = require("!!raw-loader!./event.component.ts");
 
-  methodHtml = require("!!html-loader!./method.component.html");
-  methodTs = require("!!raw-loader!./method.component.ts");
-
   calendarHtml = require("!!html-loader!./calendar.component.html");
   calendarTs = require("!!raw-loader!./calendar.component.ts");
 

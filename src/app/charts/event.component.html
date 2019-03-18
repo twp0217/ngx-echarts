@@ -1,3 +1,3 @@
-<ngx-echarts [option]="option" (onOptionChange)="onOptionChange($event)"></ngx-echarts>
+<ngx-echarts [option]="option" (onOptionChange)="chartEvent($event, 'onOptionChange')" (onClick)="chartEvent($event, 'onClick')"></ngx-echarts>
 
 <button type="button" class="btn btn-primary" (click)="update()">更新</button>
