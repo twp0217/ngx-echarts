@@ -16,12 +16,3 @@ export interface EChartSetOptionConfig {
   lazyUpdate?: boolean;
   silent?: boolean;
 }
-
-/**
- * resize参数
- */
-export interface EChartsResizeOption {
-  width?: number | string;
-  height?: number | string;
-  silent?: boolean;
-}

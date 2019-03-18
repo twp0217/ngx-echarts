@@ -5,6 +5,7 @@ import {
   Output,
   EventEmitter,
   ViewChild,
+  OnInit,
   AfterViewInit,
   OnDestroy,
   NgZone,
@@ -20,15 +21,12 @@ import { debounceTime } from 'rxjs/operators';
 import { init, connect, disConnect } from "echarts";
 import {
   ECharts,
-  EChartOption,
-  EChartsConvertFinder,
-  TypedArray
+  EChartOption
 } from "echarts";
 
 import {
   EChartInitOption,
-  EChartSetOptionConfig,
-  EChartsResizeOption
+  EChartSetOptionConfig
 } from "./interface";
 
 @Component({
@@ -36,14 +34,7 @@ import {
   templateUrl: './ngx-echarts.component.html',
   styleUrls: ['./ngx-echarts.component.scss']
 })
-export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, OnDestroy {
-  private offsetWidth: number;
-  private offsetHeight: number;
-  private resizeSubject$ = new Subject<void>();
-  private resizeSubscription$: Subscription;
-
-  echartsInstance: ECharts;
-
+export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, DoCheck, OnDestroy {
   @Input()
   theme: object | string;
   @Input()
@@ -67,77 +58,74 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, O
   @Input()
   autoResize: boolean = false;
 
-  @Output()
-  onBeforeInit: EventEmitter<any> = new EventEmitter();
-  @Output()
-  onAfterInit: EventEmitter<any> = new EventEmitter();
-  @Output()
-  onOptionChange: EventEmitter<any> = new EventEmitter();
+  @Output() onInit = new EventEmitter<any>();
+  @Output() onOptionChange = new EventEmitter<any>();
+  // events
+  @Output() onClick = new EventEmitter<any>();
+  @Output() onDblClick = new EventEmitter<any>();
+  @Output() onMouseDown = new EventEmitter<any>();
+  @Output() onMouseMove = new EventEmitter<any>();
+  @Output() onMouseUp = new EventEmitter<any>();
+  @Output() onMouseOver = new EventEmitter<any>();
+  @Output() onMouseOut = new EventEmitter<any>();
+  @Output() onGlobalOut = new EventEmitter<any>();
+  @Output() onContextMenu = new EventEmitter<any>();
+
+  private echartsInstance: ECharts;
+
+  private offsetWidth: number;
+  private offsetHeight: number;
+  private resizeSubject$ = new Subject<void>();
+  private resizeSubscription$: Subscription;
 
   @ViewChild("host")
-  host: ElementRef;
+  private host: ElementRef;
 
   constructor(private el: ElementRef, private ngZone: NgZone) { }
-
-  private buildSubscribe() {
-    this.resizeSubscription$ = this.resizeSubject$.pipe(debounceTime(100)).subscribe(() => {
-      this.resize();
-    });
-  }
-
-  private triggerSubscribe() {
-    if (this.autoResize && this.echartsInstance) {
-      const offsetWidth = this.el.nativeElement.offsetWidth;
-      const offsetHeight = this.el.nativeElement.offsetHeight;
-
-      if (this.offsetWidth !== offsetWidth || this.offsetHeight !== offsetHeight) {
-        this.offsetWidth = offsetWidth;
-        this.offsetHeight = offsetHeight;
-        this.resizeSubject$.next();
-      }
-    }
-  }
   
   @HostListener('window:resize', ['$event'])
-  windowResize(event: Event) {
-    this.triggerSubscribe();
+  windowResize(event: Event): void {
+    this.autoResize && this.resizeSubject$.next();
   }
 
-  ngAfterViewInit() {
+  ngOnInit(): void {
+    this.buildResizeSubscribe();
+  }
+
+  ngAfterViewInit(): void {
     this.init();
   }
 
-  ngOnChanges(changes: SimpleChanges) {
-    if (changes["theme"] && !changes["theme"].isFirstChange()) {
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes.theme && !changes.theme.isFirstChange()) {
       this.dispose();
       this.init();
     }
-    if (changes["option"] && !changes["option"].isFirstChange()) {
+    if (changes.option && !changes.option.isFirstChange()) {
       if (this.echartsInstance) {
         this.setOption();
       }
     }
-    if (changes["group"]) {
-      let change: SimpleChange = changes["group"];
-      this.toggleGroup(change.previousValue, change.currentValue);
+    if (changes.group) {
+      this.toggleGroup(changes.group);
     }
-    if (changes["loading"]) {
+    if (changes.loading) {
       this.toggleLoading();
     }
   }
 
-  ngDoCheck() {
-    this.triggerSubscribe();
+  ngDoCheck(): void {
+    this.autoResize && this.resizeSubject$.next();
   }
 
-  ngOnDestroy() {
+  ngOnDestroy(): void {
     this.dispose();
     if (this.resizeSubscription$) {
       this.resizeSubscription$.unsubscribe();
     }
   }
 
-  init() {
+  private init(): void {
     if (!this.echartsInstance) {
       this.offsetWidth = this.el.nativeElement.offsetWidth;
       this.offsetHeight = this.el.nativeElement.offsetHeight;
@@ -145,40 +133,39 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, O
         this.el.nativeElement.style.height = "500px";
       }
       this.ngZone.runOutsideAngular(() => {
-        this.onBeforeInit.emit();
         this.echartsInstance = init(this.host.nativeElement, this.theme, this.initOpts);
-        this.onAfterInit.emit();
+        this.onInit.emit(this.echartsInstance);
+        this.echartsInstance.group = this.group;
+        this.buildEvent();
+        this.setOption();
       });
-      this.setOption();
-      this.echartsInstance.group = this.group;
-      this.buildSubscribe();
     } else {
       this.setOption();
     }
   }
 
-  dispose(): void {
+  private dispose(): void {
     this.echartsInstance.dispose();
     this.echartsInstance = null;
   }
 
-  setOption(): void {
+  private setOption(): void {
     if (this.option) {
       this.echartsInstance.setOption(this.option, this.setOptionConfig);
       this.onOptionChange.emit(this.option);
     }
   }
 
-  toggleGroup(previousValue: any, currentValue: any) {
-    if (previousValue) {
-      disConnect(previousValue);
+  private toggleGroup(change: SimpleChange): void {
+    if (change.previousValue) {
+      disConnect(change.previousValue);
     }
-    if (currentValue) {
-      connect(currentValue);
+    if (change.currentValue) {
+      connect(change.currentValue);
     }
   }
 
-  toggleLoading() {
+  private toggleLoading(): void {
     if (this.echartsInstance) {
       if (this.loading) {
         this.echartsInstance.showLoading(this.loadingType, this.loadingOpts);
@@ -188,99 +175,34 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, O
     }
   }
 
-  getWidth(): number {
-    return this.echartsInstance.getWidth();
+  private buildEvent(): void {
+    this.echartsInstance.on('click', (event: any) => this.ngZone.run(() => this.onClick.emit(event)));
+    this.echartsInstance.on('dblclick', (event: any) => this.ngZone.run(() => this.onDblClick.emit(event)));
+    this.echartsInstance.on('mousedown', (event: any) => this.ngZone.run(() => this.onMouseDown.emit(event)));
+    this.echartsInstance.on('mousemove', (event: any) => this.ngZone.run(() => this.onMouseMove.emit(event)));
+    this.echartsInstance.on('mouseup', (event: any) => this.ngZone.run(() => this.onMouseUp.emit(event)));
+    this.echartsInstance.on('mouseover', (event: any) => this.ngZone.run(() => this.onMouseOver.emit(event)));
+    this.echartsInstance.on('mouseout', (event: any) => this.ngZone.run(() => this.onMouseOut.emit(event)));
+    this.echartsInstance.on('globalout', (event: any) => this.ngZone.run(() => this.onGlobalOut.emit(event)));
+    this.echartsInstance.on('contextmenu', (event: any) => this.ngZone.run(() => this.onContextMenu.emit(event)));
   }
 
-  getHeight(): number {
-    return this.echartsInstance.getHeight();
+  private buildResizeSubscribe(): void {
+    this.resizeSubscription$ = this.resizeSubject$.pipe(debounceTime(100)).subscribe(() => {
+      if (this.echartsInstance) {
+        const offsetWidth = this.el.nativeElement.offsetWidth;
+        const offsetHeight = this.el.nativeElement.offsetHeight;
+
+        if (this.offsetWidth !== offsetWidth || this.offsetHeight !== offsetHeight) {
+          this.offsetWidth = offsetWidth;
+          this.offsetHeight = offsetHeight;
+          this.resize();
+        }
+      }
+    });
   }
 
-  getDom(): HTMLCanvasElement | HTMLDivElement {
-    return this.echartsInstance.getDom();
-  }
-
-  getOption(): EChartOption {
-    return this.echartsInstance.getOption();
-  }
-
-  resize(opts?: EChartsResizeOption): void {
-    this.echartsInstance.resize(opts);
-  }
-
-  dispatchAction(payload: object): void {
-    this.echartsInstance.dispatchAction(payload);
-  }
-
-  on(eventName: string, handler: Function, context?: object): void {
-    this.echartsInstance.on(eventName, handler, context);
-  }
-
-  off(eventName: string, handler?: Function): void {
-    this.echartsInstance.off(eventName, handler);
-  }
-
-  convertToPixel(
-    finder: EChartsConvertFinder,
-    value: any[] | string
-  ): any[] | string {
-    return this.echartsInstance.convertToPixel(finder, value);
-  }
-
-  convertFromPixel(
-    finder: EChartsConvertFinder,
-    value: any[] | string
-  ): any[] | string {
-    return this.echartsInstance.convertFromPixel(finder, value);
-  }
-
-  containPixel(finder: EChartsConvertFinder, value: any[]): boolean {
-    return this.echartsInstance.containPixel(finder, value);
-  }
-
-  getDataURL(opts: {
-    // 导出的格式，可选 png, jpeg
-    type?: string;
-    // 导出的图片分辨率比例，默认为 1。
-    pixelRatio?: number;
-    // 导出的图片背景色，默认使用 option 里的 backgroundColor
-    backgroundColor?: string;
-    // 忽略组件的列表，例如要忽略 toolbox 就是 ['toolbox']
-    excludeComponents?: string[];
-  }): string {
-    return this.echartsInstance.getDataURL(opts);
-  }
-
-  getConnectedDataURL(opts: {
-    // // 导出的格式，可选 png, jpeg
-    // type?: string,
-    // // 导出的图片分辨率比例，默认为 1。
-    // pixelRatio?: number,
-    // // 导出的图片背景色，默认使用 option 里的 backgroundColor
-    // backgroundColor?: string,
-    // // 忽略组件的列表，例如要忽略 toolbox 就是 ['toolbox']
-    // excludeComponents?: string[]
-    // 导出的格式，可选 png, jpeg
-    type: string;
-    // 导出的图片分辨率比例，默认为 1。
-    pixelRatio: number;
-    // 导出的图片背景色，默认使用 option 里的 backgroundColor
-    backgroundColor: string;
-    // 忽略组件的列表，例如要忽略 toolbox 就是 ['toolbox']
-    excludeComponents?: string[];
-  }): string {
-    return this.echartsInstance.getConnectedDataURL(opts);
-  }
-
-  appendData(opts: { seriesIndex?: string; data?: any[] | TypedArray }): void {
-    this.echartsInstance.appendData(opts);
-  }
-
-  clear(): void {
-    this.echartsInstance.clear();
-  }
-
-  isDisposed(): boolean {
-    return this.echartsInstance ? this.echartsInstance.isDisposed() : true;
+  private resize(): void {
+    this.echartsInstance.resize();
   }
 }

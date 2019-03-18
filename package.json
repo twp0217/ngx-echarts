@@ -1,20 +1,20 @@
 {
   "name": "ngx-echarts-demo",
-  "version": "6.1.0",
+  "version": "6.2.0",
   "scripts": {
     "ng": "ng",
     "start": "npm run build:lib && ng serve",
     "build": "npm run build:lib && ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e",
     "build:lib": "ng build ngx-echarts --prod && npm run readme && npm run version",
     "changelog:init": "conventional-changelog -p angular -i CHANGELOG.md -s -r 0",
     "changelog": "conventional-changelog -p angular -i CHANGELOG.md -s",
     "publish": "npm publish ./dist/ngx-echarts --access=public",
     "publish:demo": "ng build --base-href /ngx-echarts/ --prod && gh-pages -d ./dist/ngx-echarts-demo",
     "readme": "node ./scripts/readme.js",
-    "version": "node ./scripts/version.js",
-    "test": "ng test",
-    "lint": "ng lint",
-    "e2e": "ng e2e"
+    "version": "node ./scripts/version.js"
   },
   "dependencies": {
     "@angular/animations": "^6.1.0",
