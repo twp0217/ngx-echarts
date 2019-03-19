@@ -106,24 +106,19 @@ autoResize | boolean | false | 自适应图表
 ## 事件(Events)
 名称 | 返回值 | 说明
 ---|---|---
-onBeforeInit | - | 图表初始化前
-onAfterInit | - | 图表初始化后
-onOptionChange | option: EChartOption | 图表配置项变更
+onInit | echartsInstance | 图表初始化 
+onOptionChange | option | 图表配置项变更
 
-## 方法(Methods)
-名称 | 参数 | 返回类型 | 说明
----|---|---|---
-getWidth | - | number | 获取 ECharts 实例容器的宽度
-getHeight | - | number | 获取 ECharts 实例容器的高度
-getDom | - | HTMLCanvasElement|HTMLDivElement 
-getOption | - | EChartOption | 获取当前实例中维护的option对象
-resize | EChartsResizeOption | - | 改变图表尺寸，在容器大小发生改变时需要手动调用
-dispatchAction | (payload: object) | - | 触发图表行为
-on | (eventName: string, handler: Function, context?: Object) | - | 绑定事件处理函数
-off | (eventName: string, handler?: Function) | - | 解绑事件处理函数
-getDataURL | { type?: string; pixelRatio?: number; backgroundColor?: string; excludeComponents?: string[]; } | - | 导出图表图片，返回一个 base64 的 URL 
-getConnectedDataURL | { type?: string; pixelRatio?: number; backgroundColor?: string; excludeComponents?: string[]; } | - | 导出图表图片，返回一个 base64 的 URL 
-appendData | { seriesIndex?: string, data?: Array \| TypedArray } | -  | 此接口用于，在大数据量（百万以上）的渲染场景，分片加载数据和增量渲染
-clear | - | - | 清空当前实例，会移除实例中所有的组件和图表
-isDisposed | - | boolean | 当前实例是否已经被释放
-dispose | - | - | 销毁实例，销毁后实例无法再被使用
+### Mouse events
+名称 | 返回值 | 说明
+---|---|---
+onClick | event | click 
+onDblClick | event | dblclick 
+onMouseDown | event | mousedown 
+onMouseMove | event | mousemove 
+onMouseUp | event | mouseup 
+onMouseOver | event | mouseover 
+onMouseOut | event | mouseout 
+onGlobalOut | event | globalout 
+onContextMenu | event | contextmenu 
+
