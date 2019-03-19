@@ -5,36 +5,28 @@ import {
   Output,
   EventEmitter,
   ViewChild,
-  OnInit,
   AfterViewInit,
   OnDestroy,
   NgZone,
   OnChanges,
   SimpleChange,
   SimpleChanges,
-  DoCheck,
-  HostListener
-} from "@angular/core";
-import { Subject, Subscription } from 'rxjs';
+  DoCheck
+} from '@angular/core';
+import { fromEvent, Subscription } from 'rxjs';
 import { debounceTime } from 'rxjs/operators';
 
-import { init, connect, disConnect } from "echarts";
-import {
-  ECharts,
-  EChartOption
-} from "echarts";
+import { init, connect, disConnect } from 'echarts';
+import { ECharts, EChartOption } from 'echarts';
 
-import {
-  EChartInitOption,
-  EChartSetOptionConfig
-} from "./interface";
+import { EChartInitOption, EChartSetOptionConfig } from './interface';
 
 @Component({
-  selector: "ngx-echarts",
+  selector: 'ngx-echarts',
   templateUrl: './ngx-echarts.component.html',
   styleUrls: ['./ngx-echarts.component.scss']
 })
-export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, DoCheck, OnDestroy {
+export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, OnDestroy {
   @Input()
   theme: object | string;
   @Input()
@@ -51,7 +43,7 @@ export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, Do
   @Input()
   loading: boolean;
   @Input()
-  loadingType: string = "default";
+  loadingType: string = 'default';
   @Input()
   loadingOpts: object;
 
@@ -75,24 +67,17 @@ export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, Do
 
   private offsetWidth: number;
   private offsetHeight: number;
-  private resizeSubject$ = new Subject<void>();
-  private resizeSubscription$: Subscription;
+  private resize$: Subscription;
 
-  @ViewChild("host")
+  @ViewChild('host')
   private host: ElementRef;
 
-  constructor(private el: ElementRef, private ngZone: NgZone) { }
-  
-  @HostListener('window:resize', ['$event'])
-  windowResize(event: Event): void {
-    this.autoResize && this.resizeSubject$.next();
-  }
-
-  ngOnInit(): void {
-    this.buildResizeSubscribe();
-  }
+  constructor(private el: ElementRef, private ngZone: NgZone) {}
 
   ngAfterViewInit(): void {
+    this.resize$ = fromEvent(window, 'resize')
+      .pipe(debounceTime(200))
+      .subscribe(() => this.resize());
     this.init();
   }
 
@@ -115,13 +100,13 @@ export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, Do
   }
 
   ngDoCheck(): void {
-    this.autoResize && this.resizeSubject$.next();
+    this.resize();
   }
 
   ngOnDestroy(): void {
     this.dispose();
-    if (this.resizeSubscription$) {
-      this.resizeSubscription$.unsubscribe();
+    if (this.resize$) {
+      this.resize$.unsubscribe();
     }
   }
 
@@ -130,7 +115,7 @@ export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, Do
       this.offsetWidth = this.el.nativeElement.offsetWidth;
       this.offsetHeight = this.el.nativeElement.offsetHeight;
       if (!(this.initOpts && this.initOpts.height) && this.offsetHeight === 0) {
-        this.el.nativeElement.style.height = "500px";
+        this.el.nativeElement.style.height = '500px';
       }
       this.ngZone.runOutsideAngular(() => {
         this.echartsInstance = init(this.host.nativeElement, this.theme, this.initOpts);
@@ -187,22 +172,16 @@ export class NgxEchartsComponent implements OnInit, AfterViewInit, OnChanges, Do
     this.echartsInstance.on('contextmenu', (event: any) => this.ngZone.run(() => this.onContextMenu.emit(event)));
   }
 
-  private buildResizeSubscribe(): void {
-    this.resizeSubscription$ = this.resizeSubject$.pipe(debounceTime(100)).subscribe(() => {
-      if (this.echartsInstance) {
-        const offsetWidth = this.el.nativeElement.offsetWidth;
-        const offsetHeight = this.el.nativeElement.offsetHeight;
-
-        if (this.offsetWidth !== offsetWidth || this.offsetHeight !== offsetHeight) {
-          this.offsetWidth = offsetWidth;
-          this.offsetHeight = offsetHeight;
-          this.resize();
-        }
-      }
-    });
-  }
-
   private resize(): void {
-    this.echartsInstance.resize();
+    if (this.autoResize && this.echartsInstance) {
+      const offsetWidth = this.el.nativeElement.offsetWidth;
+      const offsetHeight = this.el.nativeElement.offsetHeight;
+
+      if (this.offsetWidth !== offsetWidth || this.offsetHeight !== offsetHeight) {
+        this.offsetWidth = offsetWidth;
+        this.offsetHeight = offsetHeight;
+        this.echartsInstance.resize();
+      }
+    }
   }
 }
