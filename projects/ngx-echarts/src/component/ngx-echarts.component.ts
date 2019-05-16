@@ -62,6 +62,35 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, O
   @Output() onMouseOut = new EventEmitter<any>();
   @Output() onGlobalOut = new EventEmitter<any>();
   @Output() onContextMenu = new EventEmitter<any>();
+  // action events
+  @Output() onLegendSelectChanged = new EventEmitter<any>();
+  @Output() onLegendSelected = new EventEmitter<any>();
+  @Output() onLegendUnSelected = new EventEmitter<any>();
+  @Output() onLegendScroll = new EventEmitter<any>();
+  @Output() onDataZoom = new EventEmitter<any>();
+  @Output() onDataRangeSelected = new EventEmitter<any>();
+  @Output() onTimelineChanged = new EventEmitter<any>();
+  @Output() onTimelinePlayChanged = new EventEmitter<any>();
+  @Output() onRestore = new EventEmitter<any>();
+  @Output() onDataViewChanged = new EventEmitter<any>();
+  @Output() onMagicTypeChanged = new EventEmitter<any>();
+  @Output() onGeoSelectChanged = new EventEmitter<any>();
+  @Output() onGeoSelected = new EventEmitter<any>();
+  @Output() onGeoUnSelected = new EventEmitter<any>();
+  @Output() onPieSelectChanged = new EventEmitter<any>();
+  @Output() onPieSelected = new EventEmitter<any>();
+  @Output() onPieUnSelected = new EventEmitter<any>();
+  @Output() onMapSelectChanged = new EventEmitter<any>();
+  @Output() onMapSelected = new EventEmitter<any>();
+  @Output() onMapUnSelected = new EventEmitter<any>();
+  @Output() onAxisAreaSelected = new EventEmitter<any>();
+  @Output() onFocusNodeAdjacency = new EventEmitter<any>();
+  @Output() onUnfocusNodeAdjacency = new EventEmitter<any>();
+  @Output() onBrush = new EventEmitter<any>();
+  @Output() onBrushSelected = new EventEmitter<any>();
+  @Output() onGlobalCursorTaken = new EventEmitter<any>();
+  @Output() onRendered = new EventEmitter<any>();
+  @Output() onFinished = new EventEmitter<any>();
 
   private echartsInstance: ECharts;
 
@@ -161,6 +190,7 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, O
   }
 
   private buildEvent(): void {
+    // events
     this.echartsInstance.on('click', (event: any) => this.ngZone.run(() => this.onClick.emit(event)));
     this.echartsInstance.on('dblclick', (event: any) => this.ngZone.run(() => this.onDblClick.emit(event)));
     this.echartsInstance.on('mousedown', (event: any) => this.ngZone.run(() => this.onMouseDown.emit(event)));
@@ -170,6 +200,35 @@ export class NgxEchartsComponent implements AfterViewInit, OnChanges, DoCheck, O
     this.echartsInstance.on('mouseout', (event: any) => this.ngZone.run(() => this.onMouseOut.emit(event)));
     this.echartsInstance.on('globalout', (event: any) => this.ngZone.run(() => this.onGlobalOut.emit(event)));
     this.echartsInstance.on('contextmenu', (event: any) => this.ngZone.run(() => this.onContextMenu.emit(event)));
+    // action events
+    this.echartsInstance.on('legendselectchanged', (event: any) => this.ngZone.run(() => this.onLegendSelectChanged.emit(event)));
+    this.echartsInstance.on('legendselected', (event: any) => this.ngZone.run(() => this.onLegendSelected.emit(event)));
+    this.echartsInstance.on('legendunselected', (event: any) => this.ngZone.run(() => this.onLegendUnSelected.emit(event)));
+    this.echartsInstance.on('legendscroll', (event: any) => this.ngZone.run(() => this.onLegendScroll.emit(event)));
+    this.echartsInstance.on('datazoom', (event: any) => this.ngZone.run(() => this.onDataZoom.emit(event)));
+    this.echartsInstance.on('datarangeselected', (event: any) => this.ngZone.run(() => this.onDataRangeSelected.emit(event)));
+    this.echartsInstance.on('timelinechanged', (event: any) => this.ngZone.run(() => this.onTimelineChanged.emit(event)));
+    this.echartsInstance.on('timelineplaychanged', (event: any) => this.ngZone.run(() => this.onTimelinePlayChanged.emit(event)));
+    this.echartsInstance.on('restore', (event: any) => this.ngZone.run(() => this.onRestore.emit(event)));
+    this.echartsInstance.on('dataviewchanged', (event: any) => this.ngZone.run(() => this.onDataViewChanged.emit(event)));
+    this.echartsInstance.on('magictypechanged', (event: any) => this.ngZone.run(() => this.onMagicTypeChanged.emit(event)));
+    this.echartsInstance.on('geoselectchanged', (event: any) => this.ngZone.run(() => this.onGeoSelectChanged.emit(event)));
+    this.echartsInstance.on('geoselected', (event: any) => this.ngZone.run(() => this.onGeoSelected.emit(event)));
+    this.echartsInstance.on('geounselected', (event: any) => this.ngZone.run(() => this.onGeoUnSelected.emit(event)));
+    this.echartsInstance.on('pieselectchanged', (event: any) => this.ngZone.run(() => this.onPieSelectChanged.emit(event)));
+    this.echartsInstance.on('pieselected', (event: any) => this.ngZone.run(() => this.onPieSelected.emit(event)));
+    this.echartsInstance.on('pieunselected', (event: any) => this.ngZone.run(() => this.onPieUnSelected.emit(event)));
+    this.echartsInstance.on('mapselectchanged', (event: any) => this.ngZone.run(() => this.onMapSelectChanged.emit(event)));
+    this.echartsInstance.on('mapselected', (event: any) => this.ngZone.run(() => this.onMapSelected.emit(event)));
+    this.echartsInstance.on('mapunselected', (event: any) => this.ngZone.run(() => this.onMapUnSelected.emit(event)));
+    this.echartsInstance.on('axisareaselected', (event: any) => this.ngZone.run(() => this.onAxisAreaSelected.emit(event)));
+    this.echartsInstance.on('focusNodeAdjacency', (event: any) => this.ngZone.run(() => this.onFocusNodeAdjacency.emit(event)));
+    this.echartsInstance.on('unfocusNodeAdjacency', (event: any) => this.ngZone.run(() => this.onUnfocusNodeAdjacency.emit(event)));
+    this.echartsInstance.on('brush', (event: any) => this.ngZone.run(() => this.onBrush.emit(event)));
+    this.echartsInstance.on('brushselected', (event: any) => this.ngZone.run(() => this.onBrushSelected.emit(event)));
+    this.echartsInstance.on('globalcursortaken', (event: any) => this.ngZone.run(() => this.onGlobalCursorTaken.emit(event)));
+    this.echartsInstance.on('rendered', (event: any) => this.ngZone.run(() => this.onRendered.emit(event)));
+    this.echartsInstance.on('finished', (event: any) => this.ngZone.run(() => this.onFinished.emit(event)));
   }
 
   private resize(): void {
