@@ -1,3 +1,12 @@
+## [6.2.2](https://github.com/twp0217/ngx-echarts/compare/v6.2.1...v6.2.2) (2019-05-17)
+
+
+### Features
+
+* 增加action events事件 ([23ebf6e](https://github.com/twp0217/ngx-echarts/commit/23ebf6e))
+
+
+
 # [6.1.0](https://github.com/twp0217/ngx-echarts/compare/v6.0.2...v6.1.0) (2018-11-15)
 
 

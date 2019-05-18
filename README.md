@@ -88,7 +88,7 @@ map: {
 - 如果项目对你有帮助，请点颗星:star:，谢谢。
 - 如果你对项目有想法、问题、BUG，欢迎讨论。
 
-# [文档](https://twp0217.github.io/ngx-echarts/#/documentation)
+# 文档
 
 ## 属性(Attributes)
 名称 | 类型 | 默认值 | 说明
@@ -122,3 +122,34 @@ onMouseOut | event | mouseout
 onGlobalOut | event | globalout 
 onContextMenu | event | contextmenu 
 
+### Action events
+名称 | 返回值 | 说明
+---|---|---
+onLegendSelectChanged | event | 切换图例选中状态后的事件 
+onLegendSelected | event | 图例选中后的事件 
+onLegendUnSelected | event | 图例取消选中后的事件 
+onLegendScroll | event | 图例滚动事件 
+onDataZoom | event | 数据区域缩放后的事件 
+onDataRangeSelected | event | selectDataRange 视觉映射组件中，range 值改变后触发的事件 
+onTimelineChanged | event | 时间轴中的时间点改变后的事件 
+onTimelinePlayChanged | event | 时间轴中播放状态的切换事件 
+onRestore | event | restore 重置 option 事件 
+onDataViewChanged | event | 工具栏中数据视图的修改事件 
+onMagicTypeChanged | event | 工具栏中动态类型切换的切换事件 
+onGeoSelectChanged | event | geo 中地图区域切换选中状态的事件 
+onGeoSelected | event | geo 中地图区域选中后的事件 
+onGeoUnSelected | event | geo 中地图区域取消选中后的事件 
+onPieSelectChanged | event | series-pie 中饼图扇形切换选中状态的事件 
+onPieSelected | event | series-pie 中饼图扇形选中后的事件 
+onPieUnSelected | event | series-pie 中饼图扇形取消选中后的事件 
+onMapSelectChanged | event | series-map 中地图区域切换选中状态的事件 
+onMapSelected | event | series-map 中地图区域选中后的事件 
+onMapUnSelected | event | series-map 中地图区域取消选中后的事件 
+onAxisAreaSelected | event | 平行坐标轴 (Parallel)范围选取事件 
+onFocusNodeAdjacency | event | graph的邻接节点高亮事件 
+onUnfocusNodeAdjacency | event | graph的邻接节点取消高亮事件 
+onBrush | event | 选框添加事件 
+onBrushSelected | event | 对外通知当前选中了什么 
+onGlobalCursorTaken | event | 刷选模式的开关 
+onRendered | event | 渲染结束事件 
+onFinished | event | 渲染完成事件 
