@@ -1,7 +1,7 @@
 # ngx-echarts
 
 ## 简介
-基于angular(v2+)的echarts组件
+基于angular(v2+)的 [Apache ECharts (incubating)](https://github.com/apache/incubator-echarts) 组件
 
 ## 安装
 
