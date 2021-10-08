@@ -1,3 +1,12 @@
+# [12.0.0](https://github.com/twp0217/ngx-echarts/compare/v6.2.2...v12.0.0) (2021-10-08)
+
+
+### Features
+
+* 升级Angular 12 ([d2e523d](https://github.com/twp0217/ngx-echarts/commit/d2e523d252159e8390b76910b4a90d4e6b4c0aa8))
+
+
+
 ## [6.2.2](https://github.com/twp0217/ngx-echarts/compare/v6.2.1...v6.2.2) (2019-05-17)
 
 
