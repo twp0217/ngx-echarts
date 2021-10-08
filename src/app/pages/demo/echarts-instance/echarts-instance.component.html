@@ -1,0 +1,7 @@
+<ngx-echarts
+  #echarts
+  [option]="option"
+  (onChartInit)="onChartInit($event)"
+></ngx-echarts>
+
+<button nz-button nzType="primary" (click)="onClick()">打印echartsInstance</button>

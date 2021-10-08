@@ -1,53 +1,36 @@
-import { BrowserModule } from "@angular/platform-browser";
-import { NgModule } from "@angular/core";
-import { FormsModule } from "@angular/forms";
-import { HttpModule } from "@angular/http";
-import { LocationStrategy, HashLocationStrategy } from "@angular/common";
+import { NgModule } from '@angular/core';
+import { BrowserModule } from '@angular/platform-browser';
 
-import { TabsModule, ButtonsModule } from "ngx-bootstrap";
+import { AppRoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
+import { NZ_I18N } from 'ng-zorro-antd/i18n';
+import { zh_CN } from 'ng-zorro-antd/i18n';
+import { registerLocaleData } from '@angular/common';
+import zh from '@angular/common/locales/zh';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { IconsProviderModule } from './icons-provider.module';
+import { NzLayoutModule } from 'ng-zorro-antd/layout';
+import { NzMenuModule } from 'ng-zorro-antd/menu';
+import { MarkdownModule } from 'ngx-markdown';
 
-import { NgxEchartsModule } from "@twp0217/ngx-echarts";
-
-import { AppComponent } from "./app.component";
-
-import { AppRoutingModule } from "./app-routing.module";
-
-import { ChartsComponent } from "./charts/charts.component";
-import { BasicComponent } from "./charts/basic.component";
-import { ThemeComponent } from "./charts/theme.component";
-import { SettingComponent } from "./charts/setting.component";
-import { EventComponent } from "./charts/event.component";
-import { CalendarComponent } from "./charts/calendar.component";
-import { LoadingComponent } from './charts/loading.component';
-import { GroupComponent } from "./charts/group.component";
-
-import { DocumentationComponent } from "./documentation/documentation.component";
+registerLocaleData(zh);
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    ChartsComponent,
-    BasicComponent,
-    ThemeComponent,
-    SettingComponent,
-    EventComponent,
-    CalendarComponent,
-    LoadingComponent,
-    DocumentationComponent,
-    GroupComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
+    AppRoutingModule,
     FormsModule,
-    HttpModule,
-
-    TabsModule.forRoot(),
-    ButtonsModule.forRoot(),
-
-    NgxEchartsModule,
-    AppRoutingModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    IconsProviderModule,
+    NzLayoutModule,
+    NzMenuModule,
+    MarkdownModule.forRoot(),
   ],
-  providers: [{ provide: LocationStrategy, useClass: HashLocationStrategy }],
-  bootstrap: [AppComponent]
+  providers: [{ provide: NZ_I18N, useValue: zh_CN }],
+  bootstrap: [AppComponent],
 })
 export class AppModule {}

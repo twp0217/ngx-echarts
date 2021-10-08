@@ -1,0 +1,7 @@
+<ngx-echarts [option]="option" [theme]="theme"></ngx-echarts>
+
+<nz-radio-group [(ngModel)]="theme">
+  <label nz-radio-button [nzValue]="undefined">default</label>
+  <label nz-radio-button nzValue="dark">dark</label>
+  <label nz-radio-button [nzValue]="walden">walden</label>
+</nz-radio-group>

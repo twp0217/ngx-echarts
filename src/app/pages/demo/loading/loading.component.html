@@ -1,0 +1,9 @@
+<ngx-echarts
+  [option]="option"
+  [loading]="loading"
+  [loadingConfig]="loadingConfig"
+></ngx-echarts>
+
+<button nz-button nzType="primary" (click)="toggleLoading()">
+  {{ loading ? "隐藏" : "显示" }}加载动画
+</button>

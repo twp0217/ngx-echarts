@@ -1,0 +1,33 @@
+{
+  "name": "@twp0217/ngx-echarts",
+  "version": "0.0.0",
+  "description": "Apache ECharts component for Angular",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/twp0217/ngx-echarts.git"
+  },
+  "keywords": [
+    "ng",
+    "ng2",
+    "ngx",
+    "angular",
+    "angular2",
+    "echarts",
+    "ngx-echarts"
+  ],
+  "author": "twp0217",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/twp0217/ngx-echarts/issues"
+  },
+  "homepage": "https://github.com/twp0217/ngx-echarts#readme",
+  "peerDependencies": {
+    "@angular/common": "^12.1.0",
+    "@angular/core": "^12.1.0",
+    "echarts": ">=5.0.0"
+  },
+  "dependencies": {
+    "@juggle/resize-observer": "^3.3.1",
+    "tslib": "^2.2.0"
+  }
+}

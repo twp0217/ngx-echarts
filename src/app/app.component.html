@@ -1,25 +1,89 @@
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <a class="navbar-brand" routerLink=''>ngx-echarts</a>
+<nz-layout class="app-layout">
+  <nz-sider
+    class="menu-sidebar"
+    nzCollapsible
+    nzWidth="256px"
+    nzBreakpoint="md"
+    [(nzCollapsed)]="isCollapsed"
+    [nzTrigger]="null"
+  >
+    <div class="sidebar-logo">
+      <a href="/">
+        <img src="favicon.ico" alt="logo" />
+        <h1>ngx-echarts</h1>
+      </a>
     </div>
-    <div class="navbar-collapse collapse">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a routerLink=''>演示(Domo)</a></li>
-        <li><a routerLink="./documentation">文档(Documentation)</a></li>
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<div class="jumbotron">
-  <div class="container">
-    <h1>ngx-echarts</h1>
-    <p>Angular ECharts组件(Angular ECharts component)</p>
-    <p><a class="btn btn-primary btn-lg" href="https://github.com/twp0217/ngx-echarts" target="_blank">View on GitHub</a></p>
-  </div>
-</div>
-
-<div class="container">
-  <router-outlet></router-outlet>
-</div>
+    <ul
+      nz-menu
+      nzTheme="dark"
+      nzMode="inline"
+      [nzInlineCollapsed]="isCollapsed"
+    >
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/home">
+          <i nz-icon nzType="home"></i>
+          <span>Home</span></a
+        >
+      </li>
+      <li nz-submenu nzTitle="Demo" nzIcon="bar-chart">
+        <ul>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/basic">basic</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/theme">theme</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/init-opts">initOpts</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/auto-resize">autoResize</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/dynamic">dynamic</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/loading">loading</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/event">event</a>
+          </li>
+          <li nz-menu-item nzMatchRouter>
+            <a routerLink="/demo/echarts-instance">echartsInstance</a>
+          </li>
+        </ul>
+      </li>
+      <li nz-menu-item nzMatchRouter>
+        <a routerLink="/changelog">
+          <i nz-icon nzType="history"></i>
+          <span>Changelog</span></a
+        >
+      </li>
+    </ul>
+  </nz-sider>
+  <nz-layout>
+    <nz-header>
+      <div class="app-header">
+        <span class="header-trigger" (click)="isCollapsed = !isCollapsed">
+          <i
+            class="trigger"
+            nz-icon
+            [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          ></i>
+        </span>
+        <a
+          class="github"
+          href="https://github.com/twp0217/ngx-echarts"
+          target="_blank"
+        >
+          <i class="trigger" nz-icon nzType="github" nzTheme="outline"></i>
+        </a>
+      </div>
+    </nz-header>
+    <nz-content>
+      <div class="inner-content">
+        <router-outlet></router-outlet>
+      </div>
+    </nz-content>
+  </nz-layout>
+</nz-layout>

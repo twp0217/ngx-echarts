@@ -1,0 +1,12 @@
+{
+  "$schema": "../../../node_modules/ng-packagr/ng-package.schema.json",
+  "dest": "../../../dist/twp0217/ngx-echarts",
+  "lib": {
+    "entryFile": "src/public-api.ts",
+    "umdModuleIds": {
+      "echarts": "echarts",
+      "@juggle/resize-observer": "@juggle/resize-observer"
+    }
+  },
+  "allowedNonPeerDependencies": ["@juggle/resize-observer"]
+}
