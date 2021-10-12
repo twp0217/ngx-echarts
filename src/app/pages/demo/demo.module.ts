@@ -12,6 +12,7 @@ import { InitOptsComponent } from './init-opts/init-opts.component';
 import { AutoResizeComponent } from './auto-resize/auto-resize.component';
 import { DynamicComponent } from './dynamic/dynamic.component';
 import { LoadingComponent } from './loading/loading.component';
+import { GroupComponent } from './group/group.component';
 import { EventComponent } from './event/event.component';
 import { EchartsInstanceComponent } from './echarts-instance/echarts-instance.component';
 
@@ -25,6 +26,7 @@ import { EchartsInstanceComponent } from './echarts-instance/echarts-instance.co
     LoadingComponent,
     EventComponent,
     EchartsInstanceComponent,
+    GroupComponent,
   ],
   imports: [
     CommonModule,
