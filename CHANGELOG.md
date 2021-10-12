@@ -1,3 +1,12 @@
+## [12.0.1](https://github.com/twp0217/ngx-echarts/compare/v12.0.0...v12.0.1) (2021-10-12)
+
+
+### Features
+
+* 增加联动属性group ([2c69b95](https://github.com/twp0217/ngx-echarts/commit/2c69b9532e211c6dcc9f3790f84c8c0a13a55ba8))
+
+
+
 # [12.0.0](https://github.com/twp0217/ngx-echarts/compare/v6.2.2...v12.0.0) (2021-10-08)
 
 
