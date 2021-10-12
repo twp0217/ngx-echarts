@@ -37,6 +37,7 @@ export class NgxEchartsComponent
   @Input() autoResize: boolean = false;
   @Input() loading: boolean = false;
   @Input() loadingConfig?: EChartsLoadingConfig;
+  @Input() group?: string;
 
   @Output() readonly onChartInit = new EventEmitter<EchartsInstance>();
 
@@ -67,6 +68,7 @@ export class NgxEchartsComponent
         this.buildResizeObserver();
         this.buildEvents();
         this.setOption();
+        this.setGroup();
       });
     }
   }
@@ -146,12 +148,21 @@ export class NgxEchartsComponent
     }
   }
 
+  /**
+   * 设置图表分组
+   */
+  private setGroup(): void {
+    if (this.echartsInstance && this.group) {
+      this.echartsInstance.group = this.group;
+    }
+  }
+
   ngAfterViewInit(): void {
     this.initECharts();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    const { option, theme, initOpts, loading } = changes;
+    const { option, theme, initOpts, loading, group } = changes;
     if (option) {
       this.setOption();
     }
@@ -161,6 +172,9 @@ export class NgxEchartsComponent
     }
     if (loading) {
       this.toggleLoading();
+    }
+    if (group) {
+      this.setGroup();
     }
   }
 

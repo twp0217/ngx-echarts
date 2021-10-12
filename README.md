@@ -78,6 +78,7 @@ option = {
 | `[autoResize]`    | 自适应图表                                                   | boolean                                       | `false` |
 | `[loading]`       | 是否显示加载动画                                             | boolean                                       | -       |
 | `[loadingConfig]` | [加载动画配置](https://echarts.apache.org/zh/api.html#echartsInstance.showLoading) | EChartsLoadingConfig                          | -       |
+| `[group]` | 图表的分组，用于[联动](https://echarts.apache.org/zh/api.html#echarts.connect) | string | - |
 | `(onChartInit)` | 图表初始化时的回调                                           | (echartsInstance: EchartsInstance) => void    | -       |
 | `[onEvents]`      | [图表事件](https://echarts.apache.org/zh/api.html#events)    | EchartsOnEvents | -       |
 
